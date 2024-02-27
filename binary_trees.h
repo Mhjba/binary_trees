@@ -7,6 +7,10 @@
 #include <string.h>
 #include <limits.h>
 
+
+#include <stdlib.h>
+#include <stdio.h>
+
 /**
  * struct binary_tree_s - Binary tree node
  *
@@ -29,20 +33,30 @@ typedef struct binary_tree_s avl_t;
 typedef struct binary_tree_s heap_t;
 
 /**
- * struct link_s - structure for advanced tasks
+ * struct QueueNode - Structure for a node in the queue
+ * @treeNode: Pointer to a binary tree node
+ * @next: Pointer to the next node in the queue
  *
- * @n: depth of node specified
- * @node: node of tree to store
- * @next: next node of the linked list
+ * Description: Structure representing a node in the queue
  */
-typedef struct link_s
+struct QueueNode
 {
-	size_t n;
-	struct binary_tree_s const *node;
-	struct link_s *next;
-} link_t;
+	binary_tree_t *treeNode;
+	struct QueueNode *next;
+};
 
-
+/**
+ * struct Queue_t - Structure for a queue
+ * @front: Pointer to the front of the queue
+ * @rear: Pointer to the rear of the queue
+ *
+ * Description: Structure representing a queue
+ */
+typedef struct Queue_t
+{
+	struct QueueNode *front;
+	struct QueueNode *rear;
+} Queue_t;
 
 void binary_tree_print(const binary_tree_t *);
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
