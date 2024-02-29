@@ -29,7 +29,6 @@ int is_bst_helper (const binary_tree_t *tree, int *node)
  * Return: 1 if is bst 0 if not.
  */
 int binary_tree_is_bst(const binary_tree_t *tree)
-int binary_tree_is_bst(const binary_tree_t *tree)
 {
 	int prev = INT_MIN;
 
