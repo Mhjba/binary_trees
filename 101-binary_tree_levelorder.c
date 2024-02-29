@@ -1,8 +1,9 @@
 #include "binary_trees.h"
 /**
- * binary_tree_height - measures the height of a binary tree.
- *@tree: pointer to the root node of the tree to measure the height.
- * Return: if tree is NULL, your function must return 0.
+ * binary_tree_height - Measures the height of a binary tree.
+ * @tree: pointer to the root node.
+ * Return: Height of the tree,
+ * or 0 if tree is NULL.
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
@@ -18,43 +19,47 @@ size_t binary_tree_height(const binary_tree_t *tree)
 
 }
 /**
- * print_at_level - print node, especific level
- * @tree: pointer to the root node of the tree to traverse
- * @func: pointer to a function to call for each node.
- * @level: level to print
+ * add_from_level - add new node in each binary tree level.
+ * @tree: pointer to the root node.
+ * @func: pointer to a function node.
+ * @level: level of binary tree to print.
  */
-void print_at_level(const binary_tree_t *tree, void (*func)(int), int level)
+void add_from_level(const binary_tree_t *tree, void (*func)(int), int level)
 {
-	if (tree && func)
+	if (tree == NULL || func == NULL)
+		return;
 	{
 		if (level == 1)
 			func(tree->n);
 		else
 		{
-			print_at_level(tree->left, func, level - 1);
-			print_at_level(tree->right, func, level - 1);
+			add_from_level(tree->left, func, level - 1);
+			add_from_level(tree->right, func, level - 1);
 		}
 	}
 
 }
 
 /**
- * binary_tree_levelorder - goes through a binary tree in level-order traversal
- * @tree: pointer to the root node of the tree to traverse
- * @func: pointer to a function to call for each node.
+ * binary_tree_levelorder - function the goes through a binary
+ * tree using level-order traversal.
+ * @tree: pointer to the root node.
+ * @func: pointer to a function node.
+ * Return: void.
  */
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
-	size_t h = 0, i = 1;
+	size_t height_level = 0;
+	size_t level = 1;
 
 	if (tree == NULL || func == NULL)
 		return;
 	{
-		h = binary_tree_height(tree);
-		while (i <= h + 1)
+		height_level = binary_tree_height(tree);
+		while (level <= height_level + 1)
 		{
-			print_at_level(tree, func, i);
-			i++;
+			add_from_level(tree, func, level);
+			level++;
 		}
 	}
 
