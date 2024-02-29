@@ -1,54 +1,36 @@
 #include "binary_trees.h"
-#include <limits.h>
 
 /**
- * check_if_BST - recursive helper to binary_tree_is_bst
- * @tree: tree to check for BST
- * @prev: pointer to int, passed "by reference" to update during recursion
- * Return: 1 valid if `tree` is valid BST, or 0 if not or `tree` is NULL
+ * is_bst_helper - recursive helper to binary_tree_is_bst
+ * @tree: pointer to the root node.
+ * @node: pointer to integer.
+ * Return: 1, or 0.
  */
-int check_if_BST(const binary_tree_t *tree, int *prev)
+int is_bst_helper (const binary_tree_t *tree, int *node)
 {
 	if (tree)
 	{
-		/*
-		 * in-order traversal: recurse left, test, recurse right
-		 * branching left tests against prev inherited from parent
-		 * while branching right tests against prev = parent->n
-		 */
-		if (!check_if_BST(tree->left, prev))
+		if (!is_bst_helper(tree->left, node))
 			return (0);
 
-		/*
-		 * checks both for repeat values and for left_child < parent
-		 * and right_child > parent
-		 */
-		if (tree->n <= *prev)
+		if (tree->n <= *node)
 			return (0);
+		*node = tree->n;
 
-		/* prev updates to current */
-		*prev = tree->n;
-
-		return (check_if_BST(tree->right, prev));
+		return (is_bst_helper(tree->right, node));
 	}
-	/* recursion has reached an edge of the tree */
+
 	return (1);
 }
 
 /**
- * binary_tree_is_bst - uses recursive helper to test is binary tree is binary
- * search tree: left subtree of each node only has values less than node,
- * right subtree of each node only has values greater than node, tree is a
- * BST at each node, and no values appear twice
+ * binary_tree_is_bst - check if ist a correctly bst tree.
  * @tree: tree to check for BST
- * Return: 1 valid if `tree` is valid BST, or 0 if not or `tree` is NULL
+ * Return: 1 if is bst 0 if not.
  */
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
-	int prev = INT_MIN;
-
-	if (!tree)
+	if (tree == NULL)
 		return (0);
-
-	return (check_if_BST(tree, &prev));
+	return (is_bst_helper((binary_tree_t *)tree, (binary_tree_t *)tree));
 }
