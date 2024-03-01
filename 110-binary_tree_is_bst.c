@@ -26,12 +26,9 @@ int cross_tree(binary_tree_t *root, binary_tree_t *node)
 {
 	int aux = 0;
 
-	if (root && node)
-	{
 		aux = find_node(root, node);
 		if (node->left && node->right)
 			aux &= cross_tree(root, node->left) && cross_tree(root, node->right);
-	}
 	return (aux);
 }
 
