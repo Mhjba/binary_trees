@@ -30,7 +30,7 @@ int croos_tree(binary_tree_t *root, binary_tree_t *node)
 		if (root && node)
 		aux = find_node(root, node);
 		if (node->left && node->right)
-    	aux &= croos_tree(root, node->left) && croos_tree(root, node->right);
+			aux &= croos_tree(root, node->left) && croos_tree(root, node->right);
 		return (aux);
 	}
 }
@@ -45,6 +45,4 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 	if (tree == NULL)
 		return (0);
 	return (croos_tree((binary_tree_t *)tree, (binary_tree_t *)tree));
-	
 }
-
