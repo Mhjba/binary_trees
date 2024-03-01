@@ -33,13 +33,13 @@ int cross_tree(binary_tree_t *root, binary_tree_t *node)
 }
 
 /**
- * binary_tree_is_bst - check if it is a correctly BST tree
- * @tree: tree to check
- * Return: 1 if it is a BST, 0 if not
+ * binary_tree_is_bst - check if ist a correctly bst tree
+ * @tree: tre to check
+ * Return: 1 if is bst 0 if not
  */
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
 	if (tree == NULL)
 		return (0);
-	return (cross_tree((binary_tree_t *)tree, (binary_tree_t *)tree));
+	return (croos_tree((binary_tree_t *)tree, (binary_tree_t *)tree));
 }
