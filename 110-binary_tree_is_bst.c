@@ -41,5 +41,5 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 {
 	if (tree == NULL)
 		return (0);
-	return (croos_tree((binary_tree_t *)tree, (binary_tree_t *)tree));
+	return (cross_tree((binary_tree_t *)tree, (binary_tree_t *)tree));
 }
